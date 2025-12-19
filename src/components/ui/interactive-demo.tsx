@@ -62,6 +62,25 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
         </div>
       )}
 
+      {/* Generate Images Button */}
+      <AnimatePresence>
+        {demoState === 'show-before' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="flex justify-center mb-8"
+          >
+            <button
+              onClick={handleGenerateImages}
+              className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+            >
+              Generate Enhanced Images
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Images Section */}
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         {/* Image 1 */}
@@ -126,25 +145,6 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
           )}
         </div>
       </div>
-
-      {/* Generate Images Button */}
-      <AnimatePresence>
-        {demoState === 'show-before' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="flex justify-center mb-8"
-          >
-            <button
-              onClick={handleGenerateImages}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-            >
-              Generate Enhanced Images
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Video Selling Point - Appears after images are generated */}
       <AnimatePresence>
