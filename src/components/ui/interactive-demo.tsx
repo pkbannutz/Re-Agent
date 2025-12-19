@@ -57,7 +57,7 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
           {demoState !== 'show-before' && demoState !== 'generating-images' ? (
             <ImageComparisonSlider
               beforeImage="/demo-assets/before-image-1.jpg"
-              afterImage="/demo-assets/after-image-1.JPG"
+              afterImage="/demo-assets/after-image-1.jpg"
               alt="Property enhancement comparison 1"
             />
           ) : (
