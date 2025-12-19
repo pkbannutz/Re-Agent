@@ -157,7 +157,7 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
           >
             <h3 className="text-2xl sm:text-3xl font-bold mb-2">
               Take your{' '}
-              <span className="text-emerald-400">grandma images</span>{' '}
+              <span className="text-emerald-400">new professional images</span>{' '}
               and turn them into a{' '}
               <span className="text-emerald-400">real world cinema experience</span>
             </h3>
