@@ -131,8 +131,8 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-white/15 hover:border-emerald-500/30 transition-all hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)] group">
-              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
+            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-white/15 hover:border-emerald-500/30 transition-all hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)] group text-center">
+              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors mx-auto">
                 <Wand2 className="w-7 h-7 text-emerald-400" />
               </div>
               <h3 className="text-xl font-bold mb-3">AI Enhancement</h3>
@@ -141,8 +141,8 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-white/15 hover:border-emerald-500/30 transition-all hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)] group">
-              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
+            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-white/15 hover:border-emerald-500/30 transition-all hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)] group text-center">
+              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors mx-auto">
                 <Video className="w-7 h-7 text-emerald-400" />
               </div>
               <h3 className="text-xl font-bold mb-3">Cinematic Video</h3>
@@ -151,8 +151,8 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-white/15 hover:border-emerald-500/30 transition-all hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)] group">
-              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
+            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-white/15 hover:border-emerald-500/30 transition-all hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)] group text-center">
+              <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors mx-auto">
                 <Star className="w-7 h-7 text-emerald-400" />
               </div>
               <h3 className="text-xl font-bold mb-3">Instant Delivery</h3>
@@ -176,16 +176,16 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Starter */}
-            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-emerald-500/20 flex flex-col hover:border-emerald-500/30 transition-colors shadow-lg shadow-black/20">
+            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-emerald-500/20 flex flex-col hover:border-emerald-500/30 transition-colors shadow-lg shadow-black/20 text-center">
               <h3 className="text-xl font-bold text-zinc-300 mb-2">Starter</h3>
               <div className="text-4xl font-bold mb-1">€50</div>
               <p className="text-zinc-500 text-sm mb-8">One-time payment</p>
 
               <ul className="space-y-4 mb-8 flex-1">
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-zinc-500 mr-3" /> 6 images
                 </li>
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-zinc-500 mr-3" /> Basic enhancement
                 </li>
               </ul>
@@ -198,19 +198,19 @@ export default function Home() {
             </div>
 
             {/* Pro */}
-            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-emerald-500/20 flex flex-col hover:border-emerald-500/30 transition-colors shadow-lg shadow-black/20">
+            <div className="bg-[#0f0f0f] p-8 rounded-3xl border border-emerald-500/20 flex flex-col hover:border-emerald-500/30 transition-colors shadow-lg shadow-black/20 text-center">
               <h3 className="text-xl font-bold text-zinc-300 mb-2">Pro</h3>
               <div className="text-4xl font-bold mb-1">€250</div>
               <p className="text-zinc-500 text-sm mb-8">One-time payment</p>
 
               <ul className="space-y-4 mb-8 flex-1">
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-zinc-500 mr-3" /> 30 images
                 </li>
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-zinc-500 mr-3" /> Cinematic Video
                 </li>
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-zinc-500 mr-3" /> Priority Processing
                 </li>
               </ul>
@@ -221,7 +221,7 @@ export default function Home() {
             </div>
 
             {/* Unlimited */}
-            <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 p-8 rounded-3xl border border-emerald-500/20 flex flex-col relative shadow-[0_0_40px_-10px_rgba(16,185,129,0.25)]">
+            <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 p-8 rounded-3xl border border-emerald-500/20 flex flex-col relative shadow-[0_0_40px_-10px_rgba(16,185,129,0.25)] text-center">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg shadow-emerald-500/20">
                 Most Popular
               </div>
@@ -231,13 +231,13 @@ export default function Home() {
               <p className="text-zinc-500 text-sm mb-4">Per year</p>
 
               <ul className="space-y-4 mb-4 flex-1">
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-emerald-500 mr-3" /> 30 projects / year
                 </li>
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-emerald-500 mr-3" /> Priority Support
                 </li>
-                <li className="flex items-center text-zinc-300">
+                <li className="flex items-center justify-center text-zinc-300">
                   <Check className="w-5 h-5 text-emerald-500 mr-3" /> Custom Branding
                 </li>
               </ul>
