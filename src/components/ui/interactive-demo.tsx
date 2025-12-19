@@ -73,9 +73,9 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
           >
             <button
               onClick={handleGenerateImages}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+              className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)] animate-pulse"
             >
-              Generate Enhanced Images
+              Clean Images Demo
             </button>
           </motion.div>
         )}

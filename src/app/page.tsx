@@ -97,15 +97,6 @@ export default function Home() {
             <p className="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
               Upload raw property photos and receive publication-ready visuals plus stunning cinematic videos powered by AI.
             </p>
-            
-            <div className="flex flex-col items-center justify-center gap-4">
-              <Link
-                href="/auth/signup"
-                className="bg-white text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-zinc-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-              >
-                Start Your First Project
-              </Link>
-            </div>
           </motion.div>
 
           {/* Hero Visual - Always Visible */}
