@@ -11,7 +11,6 @@ import { InteractiveDemo } from '@/components/ui/interactive-demo'
 export default function Home() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
-  const [demoStarted, setDemoStarted] = useState(false)
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -99,34 +98,25 @@ export default function Home() {
               Upload raw property photos and receive publication-ready visuals plus stunning cinematic videos powered by AI.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-4">
               <Link
-                href="/upload"
+                href="/auth/signup"
                 className="bg-white text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-zinc-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 Start Your First Project
               </Link>
-              <button
-                onClick={() => setDemoStarted(true)}
-                className="px-8 py-4 rounded-xl font-medium text-lg text-white border border-white/10 hover:bg-white/5 transition-all flex items-center hover:border-emerald-500/50"
-              >
-                <Play className="w-5 h-5 mr-2 text-emerald-400" />
-                Test Demo
-              </button>
             </div>
           </motion.div>
 
-          {/* Hero Visual */}
-          {demoStarted && (
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-20 relative mx-auto max-w-5xl"
-            >
-              <InteractiveDemo />
-            </motion.div>
-          )}
+          {/* Hero Visual - Always Visible */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-20 relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"
+          >
+            <InteractiveDemo />
+          </motion.div>
         </div>
       </section>
 
@@ -200,7 +190,7 @@ export default function Home() {
                 </li>
               </ul>
 
-              <Link href="/upload" className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl text-center font-bold transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:-translate-y-0.5 relative overflow-hidden group">
+              <Link href="/auth/signup" className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl text-center font-bold transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:-translate-y-0.5 relative overflow-hidden group">
                 <span className="relative z-10">Try for Free Today</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-300 via-teal-400 to-emerald-500 opacity-50 animate-pulse"></div>
@@ -225,7 +215,7 @@ export default function Home() {
                 </li>
               </ul>
 
-              <Link href="/upload" className="w-full py-4 bg-white/5 hover:bg-white/10 rounded-xl text-center font-bold transition-colors border border-white/5">
+              <Link href="/auth/signup" className="w-full py-4 bg-white/5 hover:bg-white/10 rounded-xl text-center font-bold transition-colors border border-white/5">
                 Get Started
               </Link>
             </div>
@@ -283,7 +273,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-zinc-500">
                 <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
                 <li><Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                <li><Link href="/upload" className="hover:text-white transition-colors">New Project</Link></li>
+                <li><Link href="/auth/signup" className="hover:text-white transition-colors">New Project</Link></li>
               </ul>
             </div>
 
