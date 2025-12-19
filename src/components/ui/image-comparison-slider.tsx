@@ -21,6 +21,7 @@ export function ImageComparisonSlider({
   const [sliderPosition, setSliderPosition] = useState(75)
   const containerRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
+  const recentlyDragged = useRef(false)
 
   const handleMouseDown = useCallback(() => {
     isDragging.current = true
@@ -28,6 +29,12 @@ export function ImageComparisonSlider({
 
   const handleMouseUp = useCallback(() => {
     isDragging.current = false
+    // Mark as recently dragged to prevent accidental fullscreen opens
+    recentlyDragged.current = true
+    // Clear the flag after a short delay
+    setTimeout(() => {
+      recentlyDragged.current = false
+    }, 300)
   }, [])
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -49,8 +56,8 @@ export function ImageComparisonSlider({
   }, [])
 
   const handleContainerClick = useCallback((e: React.MouseEvent) => {
-    // Only trigger click if not currently dragging (to avoid accidental opens during slider use)
-    if (!isDragging.current && onClick) {
+    // Only trigger click if not currently dragging and not recently dragged (to avoid accidental opens during slider use)
+    if (!isDragging.current && !recentlyDragged.current && onClick) {
       onClick()
     }
   }, [onClick])
