@@ -14,6 +14,8 @@ interface InteractiveDemoProps {
 
 export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
   const [demoState, setDemoState] = useState<DemoState>('show-before')
+  const [fullscreenImage, setFullscreenImage] = useState<1 | 2 | null>(null)
+  const [showFullscreen, setShowFullscreen] = useState(false)
 
   const handleGenerateImages = () => {
     setDemoState('generating-images')
@@ -32,6 +34,16 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
     setTimeout(() => {
       setDemoState('video-ready')
     }, 1000)
+  }
+
+  const handleImageClick = (imageNumber: 1 | 2) => {
+    setFullscreenImage(imageNumber)
+    setShowFullscreen(true)
+  }
+
+  const handleCloseFullscreen = () => {
+    setShowFullscreen(false)
+    setFullscreenImage(null)
   }
 
   return (
@@ -59,6 +71,7 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
               beforeImage="/demo-assets/before-image-1.jpg"
               afterImage="/demo-assets/after-image-1.jpg"
               alt="Property enhancement comparison 1"
+              onClick={() => handleImageClick(1)}
             />
           ) : (
             <div className="aspect-[4/3] bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden relative">
@@ -89,6 +102,7 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
               beforeImage="/demo-assets/before-image-2.jpg"
               afterImage="/demo-assets/after-image-2.jpg"
               alt="Property enhancement comparison 2"
+              onClick={() => handleImageClick(2)}
             />
           ) : (
             <div className="aspect-[4/3] bg-[#0a0a0a] rounded-2xl border border-white/10 overflow-hidden relative">
@@ -201,6 +215,45 @@ export function InteractiveDemo({ onDemoStart }: InteractiveDemoProps) {
                 </video>
               )}
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Fullscreen Modal */}
+      <AnimatePresence>
+        {showFullscreen && fullscreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={handleCloseFullscreen}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-6xl w-full max-h-[90vh] overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleCloseFullscreen}
+                className="absolute top-4 right-4 z-60 bg-black/50 hover:bg-black/70 backdrop-blur-sm text-white rounded-full p-2 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Fullscreen Image Comparison Slider */}
+              <ImageComparisonSlider
+                beforeImage={`/demo-assets/before-image-${fullscreenImage}.jpg`}
+                afterImage={`/demo-assets/after-image-${fullscreenImage}.jpg`}
+                alt={`Property enhancement comparison ${fullscreenImage} - Fullscreen`}
+                className="w-full h-auto max-h-[85vh]"
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

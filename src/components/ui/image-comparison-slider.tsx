@@ -8,13 +8,15 @@ interface ImageComparisonSliderProps {
   afterImage: string
   alt?: string
   className?: string
+  onClick?: () => void
 }
 
 export function ImageComparisonSlider({
   beforeImage,
   afterImage,
   alt = "Before and after comparison",
-  className = ""
+  className = "",
+  onClick
 }: ImageComparisonSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(75)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -46,6 +48,13 @@ export function ImageComparisonSlider({
     setSliderPosition(percentage)
   }, [])
 
+  const handleContainerClick = useCallback((e: React.MouseEvent) => {
+    // Only trigger click if not currently dragging (to avoid accidental opens during slider use)
+    if (!isDragging.current && onClick) {
+      onClick()
+    }
+  }, [onClick])
+
   return (
     <div
       ref={containerRef}
@@ -54,6 +63,7 @@ export function ImageComparisonSlider({
       onMouseUp={handleMouseUp}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleMouseUp}
+      onClick={handleContainerClick}
     >
       {/* Before Image (Left side, always visible) */}
       <div className="absolute inset-0">
