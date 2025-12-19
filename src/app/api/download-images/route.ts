@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
     // Return ZIP file as response
     const zipFileName = `${folderName}.zip`
 
-    return new NextResponse(zipContent, {
+    return new NextResponse(new Uint8Array(zipContent), {
       headers: {
         'Content-Type': 'application/zip',
         'Content-Disposition': `attachment; filename="${zipFileName}"`,
