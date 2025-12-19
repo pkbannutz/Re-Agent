@@ -1,20 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #ededed;
+
+  /* Theme Colors - Primary (emerald/green) */
+  --color-primary-50: oklch(97.9% 0.021 166.113);
+  --color-primary-100: oklch(95% 0.052 163.051);
+  --color-primary-200: oklch(90.5% 0.093 164.15);
+  --color-primary-300: oklch(84.5% 0.143 164.978);
+  --color-primary-400: oklch(76.5% 0.177 163.223);
+  --color-primary-500: oklch(69.6% 0.17 162.48);
+  --color-primary-600: oklch(59.6% 0.145 163.225);
+  --color-primary-700: oklch(50.8% 0.118 165.612);
+  --color-primary-800: oklch(43.2% 0.095 166.913);
+  --color-primary-900: oklch(37.8% 0.077 168.94);
+  --color-primary-950: oklch(26.2% 0.051 172.552);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+  --color-primary-950: var(--color-primary-950);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #050505;
     --foreground: #ededed;
   }
 }
@@ -23,4 +47,37 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom Utilities for "Vibe" Glows */
+@layer utilities {
+  .glow-green {
+    box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.15);
+  }
+  
+  .glow-green-lg {
+    box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25);
+  }
+
+  .border-glow {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .bg-fade-to-black {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+  }
+
+  /* New Card Vibe */
+  .card-vibe {
+    @apply bg-[#0f0f0f] border border-white/10 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)];
+  }
+  
+  .card-vibe:hover {
+    @apply border-white/20 shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)];
+  }
+
+  /* Text Fade Gradient */
+  .text-fade-green {
+    @apply text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-emerald-900;
+  }
 }
