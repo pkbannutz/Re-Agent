@@ -2,20 +2,20 @@ export function SecurityView() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-white mb-8">Security Policy</h1>
+        <h1 className="text-4xl font-bold text-card-foreground mb-8">Security Policy</h1>
       </div>
 
-      <div className="bg-[#111] border border-white/5 rounded-2xl p-8 shadow-sm">
-        <div className="space-y-6 text-sm leading-relaxed text-zinc-300">
+      <div className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+        <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
           <p>Last updated: December 2025</p>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">1. Security Overview</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">1. Security Overview</h2>
           <p>
             At Re-Agent, security is our top priority. We implement comprehensive security measures to protect your data,
             ensure privacy, and maintain the integrity of our services.
           </p>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">2. Data Protection</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">2. Data Protection</h2>
           <p>
             We employ industry-standard encryption protocols to protect your data both in transit and at rest:
           </p>
@@ -26,7 +26,7 @@ export function SecurityView() {
             <li>API communications are secured with JWT tokens</li>
           </ul>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">3. Access Control</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">3. Access Control</h2>
           <p>
             We implement strict access controls to ensure only authorized personnel can access systems and data:
           </p>
@@ -37,7 +37,7 @@ export function SecurityView() {
             <li>Principle of least privilege enforced</li>
           </ul>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">4. Infrastructure Security</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">4. Infrastructure Security</h2>
           <p>
             Our infrastructure is hosted on secure, compliant cloud platforms with enterprise-grade security:
           </p>
@@ -48,13 +48,13 @@ export function SecurityView() {
             <li>24/7 security monitoring and incident response</li>
           </ul>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">5. Payment Security</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">5. Payment Security</h2>
           <p>
             All payment processing is handled by Stripe, a PCI DSS Level 1 compliant payment processor.
             We never store credit card information on our servers.
           </p>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">6. Incident Response</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">6. Incident Response</h2>
           <p>
             In the unlikely event of a security incident, we have established procedures to:
           </p>
@@ -65,7 +65,7 @@ export function SecurityView() {
             <li>Implement preventive measures</li>
           </ul>
 
-          <h2 className="text-xl font-semibold text-white mt-8 mb-4">7. Contact Us</h2>
+          <h2 className="text-xl font-semibold text-card-foreground mt-8 mb-4">7. Contact Us</h2>
           <p>
             If you have any security concerns or questions, please contact us at{' '}
             <a href="mailto:security@re-agent.com" className="text-emerald-400 hover:text-emerald-300 underline">

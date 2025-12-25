@@ -96,19 +96,19 @@ export function DashboardView({ onProjectSelect, onNewProject }: DashboardViewPr
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-      case 'reviewing': return 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-      case 'filming': return 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-      case 'failed': return 'bg-red-500/10 text-red-400 border border-red-500/20'
-      case 'paid': return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-      default: return 'bg-zinc-800 text-zinc-400 border border-zinc-700'
+      case 'completed': return 'bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+      case 'reviewing': return 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
+      case 'filming': return 'bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800'
+      case 'failed': return 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
+      case 'paid': return 'bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+      default: return 'bg-muted text-muted-foreground border border-border'
     }
   }
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
       </div>
     )
   }
@@ -118,16 +118,16 @@ export function DashboardView({ onProjectSelect, onNewProject }: DashboardViewPr
       {/* Header */}
       <div className="flex items-end justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight mb-2">
+          <h1 className="text-3xl font-bold text-foreground tracking-tight mb-2">
             Dashboard
           </h1>
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             Welcome back, {user?.email?.split('@')[0]}
           </p>
         </div>
         <button
           onClick={onNewProject}
-          className="inline-flex items-center px-4 py-2 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all shadow-lg shadow-white/5 hover:shadow-white/10 hover:-translate-y-0.5"
+          className="inline-flex items-center px-4 py-2 bg-primary-500 text-white font-bold rounded-xl hover:bg-primary-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
         >
           <Plus className="w-4 h-4 mr-2" />
           New Project
@@ -140,70 +140,70 @@ export function DashboardView({ onProjectSelect, onNewProject }: DashboardViewPr
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-[#0f0f0f] p-6 rounded-3xl border border-white/10 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors"
+          className="bg-card p-6 rounded-3xl border border-border shadow-lg hover:shadow-xl transition-all hover:border-primary-200 dark:hover:border-primary-800"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-500/10 text-blue-400 rounded-xl">
+            <div className="p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 rounded-xl">
               <Clock className="w-6 h-6" />
             </div>
-            <span className="text-3xl font-bold text-white">{projects.length}</span>
+            <span className="text-3xl font-bold text-card-foreground">{projects.length}</span>
           </div>
-          <p className="text-sm font-medium text-zinc-500">Total Projects</p>
+          <p className="text-sm font-medium text-muted-foreground">Total Projects</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-[#0f0f0f] p-6 rounded-3xl border border-white/10 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors"
+          className="bg-card p-6 rounded-3xl border border-border shadow-lg hover:shadow-xl transition-all hover:border-primary-200 dark:hover:border-primary-800"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl">
+            <div className="p-3 bg-emerald-100 dark:bg-emerald-900 text-emerald-600 rounded-xl">
               <CheckCircle className="w-6 h-6" />
             </div>
-            <span className="text-3xl font-bold text-white">
+            <span className="text-3xl font-bold text-card-foreground">
               {projects.filter(p => p.status === 'completed').length}
             </span>
           </div>
-          <p className="text-sm font-medium text-zinc-500">Completed</p>
+          <p className="text-sm font-medium text-muted-foreground">Completed</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-[#0f0f0f] p-6 rounded-3xl border border-white/10 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors"
+          className="bg-card p-6 rounded-3xl border border-border shadow-lg hover:shadow-xl transition-all hover:border-primary-200 dark:hover:border-primary-800"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-purple-500/10 text-purple-400 rounded-xl">
+            <div className="p-3 bg-purple-100 dark:bg-purple-900 text-purple-600 rounded-xl">
               <Video className="w-6 h-6" />
             </div>
-            <span className="text-3xl font-bold text-white">
+            <span className="text-3xl font-bold text-card-foreground">
               {projects.filter(p => p.package !== 'starter' && p.status === 'completed').length}
             </span>
           </div>
-          <p className="text-sm font-medium text-zinc-500">Videos Created</p>
+          <p className="text-sm font-medium text-muted-foreground">Videos Created</p>
         </motion.div>
       </div>
 
       {/* Projects Grid */}
       <div>
-        <h2 className="text-lg font-semibold text-white mb-6">Recent Projects</h2>
+        <h2 className="text-lg font-semibold text-card-foreground mb-6">Recent Projects</h2>
 
         {projects.length === 0 ? (
-          <div className="text-center py-20 bg-[#0f0f0f] rounded-3xl border border-white/10 border-dashed">
+          <div className="text-center py-20 bg-card rounded-3xl border border-border border-dashed">
             <div className="mb-4">
-              <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto text-zinc-500">
+              <div className="w-16 h-16 bg-muted rounded-2xl flex items-center justify-center mx-auto text-muted-foreground">
                 <Play className="w-8 h-8 ml-1" />
               </div>
             </div>
-            <h3 className="text-lg font-medium text-white mb-1">No projects yet</h3>
-            <p className="text-zinc-500 mb-6 max-w-sm mx-auto">
+            <h3 className="text-lg font-medium text-card-foreground mb-1">No projects yet</h3>
+            <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
               Start your first project to transform your property photos with AI.
             </p>
             <button
               onClick={onNewProject}
-              className="inline-flex items-center px-6 py-3 bg-white text-black rounded-xl hover:bg-zinc-200 transition-colors font-bold shadow-lg shadow-white/5"
+              className="inline-flex items-center px-6 py-3 bg-primary-500 text-white rounded-xl hover:bg-primary-600 transition-colors font-bold shadow-lg"
             >
               Create Project
             </button>
@@ -217,7 +217,7 @@ export function DashboardView({ onProjectSelect, onNewProject }: DashboardViewPr
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 + 0.4 }}
                 onClick={() => viewProject(project.id)}
-                className="group relative bg-[#0f0f0f] rounded-3xl p-6 border border-white/10 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_30px_-4px_rgba(16,185,129,0.1)]"
+                className="group relative bg-card rounded-3xl p-6 border border-border hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className={`px-3 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(project.status)}`}>
@@ -225,22 +225,22 @@ export function DashboardView({ onProjectSelect, onNewProject }: DashboardViewPr
                   </div>
                   <button
                     onClick={(e) => deleteProject(e, project.id, project.name)}
-                    className="text-zinc-600 hover:text-red-400 transition-colors p-1 rounded-lg hover:bg-red-500/10 opacity-0 group-hover:opacity-100"
+                    className="text-muted-foreground hover:text-red-500 transition-colors p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-950 opacity-0 group-hover:opacity-100"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-1">
+                <h3 className="text-xl font-bold text-card-foreground mb-2 group-hover:text-primary-600 transition-colors line-clamp-1">
                   {project.name}
                 </h3>
 
-                <div className="flex items-center text-zinc-500 text-sm mb-6">
+                <div className="flex items-center text-muted-foreground text-sm mb-6">
                   <MapPin className="w-4 h-4 mr-1.5" />
                   <span className="truncate">{project.address || 'No address added'}</span>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-zinc-600 pt-4 border-t border-white/5">
+                <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border">
                   <span className="capitalize">{project.package} Package</span>
                   <span>{new Date(project.created_at).toLocaleDateString()}</span>
                 </div>

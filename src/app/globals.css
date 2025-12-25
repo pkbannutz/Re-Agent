@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
+/* Light Theme (Default - Steve Jobs Clean) */
 :root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --muted: #f8f8f8;
+  --muted-foreground: #666666;
+  --border: #e5e5e5;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+
+  /* Clean primary colors - subtle grays */
+  --color-primary-50: #f9f9f9;
+  --color-primary-100: #f2f2f2;
+  --color-primary-200: #e5e5e5;
+  --color-primary-300: #d4d4d4;
+  --color-primary-400: #a3a3a3;
+  --color-primary-500: #737373;
+  --color-primary-600: #525252;
+  --color-primary-700: #404040;
+  --color-primary-800: #262626;
+  --color-primary-900: #171717;
+  --color-primary-950: #0a0a0a;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
   --background: #050505;
   --foreground: #ededed;
+  --muted: #1a1a1a;
+  --muted-foreground: #a3a3a3;
+  --border: #262626;
+  --card: #0f0f0f;
+  --card-foreground: #ededed;
 
-  /* Theme Colors - Primary (emerald/green) */
-  --color-primary-50: oklch(97.9% 0.021 166.113);
-  --color-primary-100: oklch(95% 0.052 163.051);
-  --color-primary-200: oklch(90.5% 0.093 164.15);
-  --color-primary-300: oklch(84.5% 0.143 164.978);
-  --color-primary-400: oklch(76.5% 0.177 163.223);
-  --color-primary-500: oklch(69.6% 0.17 162.48);
-  --color-primary-600: oklch(59.6% 0.145 163.225);
-  --color-primary-700: oklch(50.8% 0.118 165.612);
-  --color-primary-800: oklch(43.2% 0.095 166.913);
-  --color-primary-900: oklch(37.8% 0.077 168.94);
-  --color-primary-950: oklch(26.2% 0.051 172.552);
+  /* Dark theme primary colors - subtle grays */
+  --color-primary-50: #171717;
+  --color-primary-100: #262626;
+  --color-primary-200: #404040;
+  --color-primary-300: #525252;
+  --color-primary-400: #737373;
+  --color-primary-500: #a3a3a3;
+  --color-primary-600: #d4d4d4;
+  --color-primary-700: #e5e5e5;
+  --color-primary-800: #f2f2f2;
+  --color-primary-900: #f9f9f9;
+  --color-primary-950: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --color-primary-50: var(--color-primary-50);
   --color-primary-100: var(--color-primary-100);
   --color-primary-200: var(--color-primary-200);
@@ -36,17 +71,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #050505;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Utilities for "Vibe" Glows */

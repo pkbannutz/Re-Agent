@@ -23,26 +23,26 @@ export function StatusView() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-white tracking-tight mb-2">
+        <h1 className="text-3xl font-bold text-card-foreground tracking-tight mb-2">
           System Status
         </h1>
-        <p className="text-zinc-400">
+        <p className="text-muted-foreground">
           Real-time status of our services and infrastructure.
         </p>
       </div>
 
-      <div className="bg-[#111] border border-white/5 rounded-2xl p-6 shadow-sm">
-        <div className="flex items-center mb-8 bg-emerald-500/10 p-4 rounded-xl border border-emerald-500/20">
+      <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+        <div className="flex items-center mb-8 bg-emerald-100 dark:bg-emerald-900/20 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800">
           <CheckCircle className="w-6 h-6 text-emerald-500 mr-3" />
-          <h2 className="text-lg font-semibold text-emerald-400">All Systems Operational</h2>
+          <h2 className="text-lg font-semibold text-emerald-700 dark:text-emerald-300">All Systems Operational</h2>
         </div>
 
         <div className="space-y-4">
           {systems.map((system) => (
-            <div key={system.name} className="flex items-center justify-between p-4 bg-black rounded-xl border border-white/5">
-              <span className="font-medium text-white">{system.name}</span>
+            <div key={system.name} className="flex items-center justify-between p-4 bg-muted rounded-xl border border-border">
+              <span className="font-medium text-card-foreground">{system.name}</span>
               <div className="flex items-center space-x-2">
-                <span className="text-sm text-zinc-400 capitalize">{system.status}</span>
+                <span className="text-sm text-muted-foreground capitalize">{system.status}</span>
                 {getStatusIcon(system.status)}
               </div>
             </div>

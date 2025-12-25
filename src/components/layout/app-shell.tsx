@@ -10,6 +10,7 @@ import { StatusView } from '@/components/views/status-view'
 import { PrivacyView } from '@/components/views/privacy-view'
 import { TermsView } from '@/components/views/terms-view'
 import { SecurityView } from '@/components/views/security-view'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { EditableText } from '@/components/ui/editable-text'
@@ -364,9 +365,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Sidebar onNewProject={handleNewProject} onViewChange={handleViewChange} />
       <main className="pl-64 min-h-screen">
+        {/* Theme Toggle */}
+        <div className="fixed top-4 right-4 z-40">
+          <ThemeToggle />
+        </div>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentView === 'dashboard' ? 'dashboard' :
@@ -390,20 +395,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setShowNewProjectModal(false)}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-[#050505] rounded-3xl border border-white/10 shadow-2xl"
+              className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-background rounded-3xl border border-border shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={() => setShowNewProjectModal(false)}
-                className="absolute top-6 right-6 w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+                className="absolute top-6 right-6 w-8 h-8 bg-muted hover:bg-muted/80 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -413,8 +418,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <div className="mb-6 mx-8">
                   <div className={`p-4 rounded-xl border ${
                     statusMessage.type === 'success'
-                      ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-                      : 'bg-red-500/10 border-red-500/20 text-red-400'
+                      ? 'bg-emerald-100 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300'
+                      : 'bg-red-100 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-700 dark:text-red-300'
                   }`}>
                     {statusMessage.message}
                   </div>
@@ -428,38 +433,38 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     <div>
                       <Link
                         href="/dashboard"
-                        className="inline-flex items-center text-sm text-zinc-400 hover:text-white transition-colors mb-2"
+                        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-2"
                       >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Back to Dashboard
                       </Link>
-                      <h1 className="text-3xl font-bold text-white tracking-tight">Create New Project</h1>
+                      <h1 className="text-3xl font-bold text-foreground tracking-tight">Create New Project</h1>
                     </div>
                   </div>
 
                   <div className="grid gap-8">
                     {/* Project Details */}
-                    <div className="bg-[#111] p-6 rounded-2xl border border-white/5 space-y-6">
-                      <h2 className="text-xl font-semibold text-white">Project Details</h2>
+                    <div className="bg-card p-6 rounded-2xl border border-border space-y-6">
+                      <h2 className="text-xl font-semibold text-card-foreground">Project Details</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-medium text-zinc-400 mb-2">Project Name *</label>
+                          <label className="block text-sm font-medium text-muted-foreground mb-2">Project Name *</label>
                           <input
                             type="text"
                             value={projectName}
                             onChange={(e) => setProjectName(e.target.value)}
-                            className="w-full px-4 py-3 bg-black border border-white/10 text-white rounded-xl focus:ring-1 focus:ring-primary-500 focus:border-primary-500 transition-all placeholder:text-zinc-700 outline-none"
+                            className="w-full px-4 py-3 bg-background border border-border text-card-foreground rounded-xl focus:ring-1 focus:ring-primary-500 focus:border-primary-500 transition-all placeholder:text-muted-foreground outline-none"
                             placeholder="e.g., Landbrook Estate"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-zinc-400 mb-2">Property Address</label>
+                          <label className="block text-sm font-medium text-muted-foreground mb-2">Property Address</label>
                           <input
                             type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            className="w-full px-4 py-3 bg-black border border-white/10 text-white rounded-xl focus:ring-1 focus:ring-primary-500 focus:border-primary-500 transition-all placeholder:text-zinc-700 outline-none"
+                            className="w-full px-4 py-3 bg-background border border-border text-card-foreground rounded-xl focus:ring-1 focus:ring-primary-500 focus:border-primary-500 transition-all placeholder:text-muted-foreground outline-none"
                             placeholder="Optional: 123 Main St, London"
                           />
                         </div>
@@ -467,21 +472,21 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* Package Selection */}
-                    <div className="bg-[#111] p-6 rounded-2xl border border-white/5 space-y-6">
-                      <h2 className="text-xl font-semibold text-white">Choose Package</h2>
+                    <div className="bg-card p-6 rounded-2xl border border-border space-y-6">
+                      <h2 className="text-xl font-semibold text-card-foreground">Choose Package</h2>
 
                       {hasFreeTrial && !isCheckingTrial && (
-                        <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-xl p-4 flex items-center justify-between">
+                        <div className="bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl p-4 flex items-center justify-between">
                           <div>
-                            <h3 className="font-semibold text-emerald-400">🎁 Free Trial Available!</h3>
-                            <p className="text-emerald-500/80 text-sm">Get your first Starter project completely free (€50 value)</p>
+                            <h3 className="font-semibold text-primary-700 dark:text-primary-300">🎁 Free Trial Available!</h3>
+                            <p className="text-primary-600 dark:text-primary-400 text-sm">Get your first Starter project completely free (€50 value)</p>
                           </div>
                           <button
                             onClick={() => setSelectedPackage('free-trial')}
                             className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
                               selectedPackage === 'free-trial'
-                                ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                                : 'bg-white/5 text-emerald-400 hover:bg-emerald-500/10 border border-emerald-500/20'
+                                ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/20'
+                                : 'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-800 border border-primary-200 dark:border-primary-800'
                             }`}
                           >
                             Claim Free Trial
@@ -494,40 +499,40 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           onClick={() => setSelectedPackage('starter')}
                           className={`relative border rounded-2xl p-6 cursor-pointer transition-all duration-200 ${
                             selectedPackage === 'starter'
-                              ? 'border-primary-500 bg-primary-500/10'
-                              : 'border-white/5 hover:border-white/10 bg-black'
+                              ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                              : 'border-border hover:border-primary-200 dark:hover:border-primary-800 bg-card'
                           }`}
                         >
                           {selectedPackage === 'starter' && (
-                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20">
+                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg">
                               <Check className="w-5 h-5" />
                             </div>
                           )}
 
                           <div className="mb-4">
-                            <h3 className="text-xl font-bold text-white mb-1">Starter</h3>
+                            <h3 className="text-xl font-bold text-card-foreground mb-1">Starter</h3>
                             <div className="flex items-baseline">
-                              <span className="text-3xl font-bold text-white">€50</span>
-                              <span className="text-zinc-500 ml-1 text-sm">one-time</span>
+                              <span className="text-3xl font-bold text-card-foreground">€50</span>
+                              <span className="text-muted-foreground ml-1 text-sm">one-time</span>
                             </div>
                           </div>
 
                           <ul className="space-y-3 mb-6">
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               6 high-quality images
                             </li>
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               AI-powered enhancement
                             </li>
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 mr-3 flex-shrink-0 text-zinc-700" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-muted-foreground mr-3 flex-shrink-0" />
                               No video included
                             </li>
                           </ul>
 
-                          <button className="w-full py-3 bg-white text-black rounded-xl text-center font-bold hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5">
+                          <button className="w-full py-3 bg-primary-500 text-white rounded-xl text-center font-bold hover:bg-primary-600 transition-colors shadow-lg">
                             Try for Free Today
                           </button>
                         </div>
@@ -536,40 +541,40 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           onClick={() => setSelectedPackage('pro')}
                           className={`relative border rounded-2xl p-6 cursor-pointer transition-all duration-200 ${
                             selectedPackage === 'pro'
-                              ? 'border-primary-500 bg-primary-500/10'
-                              : 'border-white/5 hover:border-white/10 bg-black'
+                              ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                              : 'border-border hover:border-primary-200 dark:hover:border-primary-800 bg-card'
                           }`}
                         >
                           {selectedPackage === 'pro' && (
-                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20">
+                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg">
                               <Check className="w-5 h-5" />
                             </div>
                           )}
 
                           <div className="mb-4">
-                            <h3 className="text-xl font-bold text-white mb-1">Pro</h3>
+                            <h3 className="text-xl font-bold text-card-foreground mb-1">Pro</h3>
                             <div className="flex items-baseline">
-                              <span className="text-3xl font-bold text-white">€250</span>
-                              <span className="text-zinc-500 ml-1 text-sm">one-time</span>
+                              <span className="text-3xl font-bold text-card-foreground">€250</span>
+                              <span className="text-muted-foreground ml-1 text-sm">one-time</span>
                             </div>
                           </div>
 
                           <ul className="space-y-3 mb-6">
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               30 high-quality images
                             </li>
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               AI-powered enhancement
                             </li>
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 mr-3 flex-shrink-0 text-emerald-500" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               60-second cinematic video
                             </li>
                           </ul>
 
-                          <button className="w-full py-3 bg-white text-black rounded-xl text-center font-bold hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5">
+                          <button className="w-full py-3 bg-primary-500 text-white rounded-xl text-center font-bold hover:bg-primary-600 transition-colors shadow-lg">
                             Get Started
                           </button>
                         </div>
@@ -578,48 +583,48 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           onClick={() => setSelectedPackage('unlimited')}
                           className={`relative border rounded-2xl p-6 cursor-pointer transition-all duration-200 ${
                             selectedPackage === 'unlimited'
-                              ? 'border-primary-500 bg-primary-500/10'
-                              : 'border-white/5 hover:border-white/10 bg-gradient-to-br from-emerald-500/10 to-teal-500/10'
+                              ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                              : 'border-border hover:border-primary-200 dark:hover:border-primary-800 bg-card'
                           }`}
                         >
-                          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg shadow-emerald-500/20">
+                          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg">
                             Most Popular
                           </div>
 
                           {selectedPackage === 'unlimited' && (
-                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20">
+                            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg">
                               <Check className="w-5 h-5" />
                             </div>
                           )}
 
                           <div className="mb-4">
-                            <h3 className="text-xl font-bold text-white mb-1">Unlimited</h3>
+                            <h3 className="text-xl font-bold text-card-foreground mb-1">Unlimited</h3>
                             <div className="flex items-baseline">
-                              <span className="text-3xl font-bold text-white">€2,500</span>
-                              <span className="text-zinc-500 ml-1 text-sm">per year</span>
+                              <span className="text-3xl font-bold text-card-foreground">€2,500</span>
+                              <span className="text-muted-foreground ml-1 text-sm">per year</span>
                             </div>
                           </div>
 
                           <ul className="space-y-3 mb-4">
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               30 projects per year
                             </li>
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               Priority support
                             </li>
-                            <li className="flex items-center text-sm text-zinc-400">
-                              <Check className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                            <li className="flex items-center text-sm text-muted-foreground">
+                              <Check className="w-4 h-4 text-primary-500 mr-3 flex-shrink-0" />
                               Custom branding
                             </li>
                           </ul>
 
-                          <p className="text-xs text-zinc-400 mb-4">
+                          <p className="text-xs text-muted-foreground mb-4">
                             Additional properties: $70 per package (30 images + video)
                           </p>
 
-                          <button className="w-full py-3 bg-white text-black rounded-xl text-center font-bold hover:bg-zinc-200 transition-colors shadow-lg shadow-white/5">
+                          <button className="w-full py-3 bg-primary-500 text-white rounded-xl text-center font-bold hover:bg-primary-600 transition-colors shadow-lg">
                             Get Started
                           </button>
                         </div>
@@ -627,19 +632,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* File Upload */}
-                    <div className="bg-[#111] p-6 rounded-2xl border border-white/5 space-y-6">
-                      <h2 className="text-xl font-semibold text-white">
-                        Upload Images <span className="text-zinc-500 font-normal ml-2">{uploadedImages.length}/{packages[selectedPackage as keyof typeof packages]?.images || 6}</span>
+                    <div className="bg-card p-6 rounded-2xl border border-border space-y-6">
+                      <h2 className="text-xl font-semibold text-card-foreground">
+                        Upload Images <span className="text-muted-foreground font-normal ml-2">{uploadedImages.length}/{packages[selectedPackage as keyof typeof packages]?.images || 6}</span>
                       </h2>
 
                       {/* Uploaded Images Preview */}
                       {uploadedImages.length > 0 && (
                         <div className="space-y-4">
-                          <h3 className="text-lg font-semibold text-white">Uploaded Images ({uploadedImages.length})</h3>
+                          <h3 className="text-lg font-semibold text-card-foreground">Uploaded Images ({uploadedImages.length})</h3>
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {uploadedImages.map((image, index) => (
                               <div key={image.id} className="relative group max-w-sm">
-                                <div className="bg-black rounded-xl overflow-hidden border border-white/10">
+                                <div className="bg-muted rounded-xl overflow-hidden border border-border">
                                   <img
                                     src={image.url}
                                     alt={`Uploaded image ${index + 1}`}
@@ -648,7 +653,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                                 </div>
                                 <button
                                   onClick={() => removeUploadedImage(index)}
-                                  className="absolute top-2 right-2 w-6 h-6 bg-red-500/20 backdrop-blur-md rounded-full flex items-center justify-center text-red-400 hover:bg-red-500/30 transition-colors opacity-0 group-hover:opacity-100"
+                                  className="absolute top-2 right-2 w-6 h-6 bg-red-500/20 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 hover:bg-red-500/30 transition-colors opacity-0 group-hover:opacity-100"
                                 >
                                   <X className="w-4 h-4" />
                                 </button>
@@ -661,7 +666,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                             <button
                               onClick={handleSubmit}
                               disabled={loading || !projectName.trim()}
-                              className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 rounded-xl font-bold hover:from-emerald-500 hover:to-teal-500 transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:-translate-y-0.5 flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="bg-primary-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-primary-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                               {loading && <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />}
                               {loading ? 'Creating Project...' : 'Create Project & Generate Images'}
@@ -672,8 +677,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
                       {/* Upload Progress */}
                       {Object.keys(uploadingFiles).length > 0 && (
-                        <div className="bg-[#111] p-4 rounded-xl border border-white/5 space-y-3">
-                          <h3 className="text-sm font-semibold text-white">Uploading Images</h3>
+                        <div className="bg-card p-4 rounded-xl border border-border space-y-3">
+                          <h3 className="text-sm font-semibold text-card-foreground">Uploading Images</h3>
                           <div className="space-y-3">
                             {Object.entries(uploadingFiles).map(([fileId, uploadState]) => {
                               const fileName = fileId.split('-')[0]
@@ -686,18 +691,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                                   }`}
                                 >
                                   <div className="flex items-center justify-between text-sm">
-                                    <span className="text-white truncate max-w-[200px]">{fileName}</span>
+                                    <span className="text-card-foreground truncate max-w-[200px]">{fileName}</span>
                                     <span className={`text-xs px-2 py-1 rounded-full ${
-                                      uploadState.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' :
-                                      uploadState.status === 'error' ? 'bg-red-500/20 text-red-400' :
-                                      'bg-primary-500/20 text-primary-400'
+                                      uploadState.status === 'completed' ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300' :
+                                      uploadState.status === 'error' ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300' :
+                                      'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300'
                                     }`}>
                                       {uploadState.status === 'completed' ? 'Complete' :
                                        uploadState.status === 'error' ? 'Failed' :
                                        `${uploadState.progress}%`}
                                     </span>
                                   </div>
-                                  <div className="w-full bg-black rounded-full h-2 overflow-hidden">
+                                  <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                                     <div
                                       className={`h-full transition-all duration-300 ease-out ${
                                         uploadState.status === 'completed' ? 'bg-emerald-500' :
@@ -717,18 +722,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                       {/* Failed Uploads */}
                       {failedUploads.length > 0 && (
                         <div className="space-y-3">
-                          <h3 className="text-sm font-semibold text-red-400">Failed Uploads ({failedUploads.length})</h3>
+                          <h3 className="text-sm font-semibold text-red-600 dark:text-red-400">Failed Uploads ({failedUploads.length})</h3>
                           <div className="grid grid-cols-1 gap-3">
                             {failedUploads.map((failed, index) => (
-                              <div key={failed.id} className="relative p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+                              <div key={failed.id} className="relative p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-xl">
                                 <div className="flex items-start justify-between">
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-red-400 truncate">{failed.filename}</p>
-                                    <p className="text-xs text-red-300/80 mt-1">{failed.error}</p>
+                                    <p className="text-sm font-medium text-red-700 dark:text-red-300 truncate">{failed.filename}</p>
+                                    <p className="text-xs text-red-600 dark:text-red-400 mt-1">{failed.error}</p>
                                   </div>
                                   <button
                                     onClick={() => setFailedUploads(prev => prev.filter((_, i) => i !== index))}
-                                    className="ml-2 text-red-400 hover:text-red-300 transition-colors"
+                                    className="ml-2 text-red-500 hover:text-red-400 transition-colors"
                                   >
                                     <X className="w-4 h-4" />
                                   </button>
@@ -743,15 +748,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                         onDragOver={handleDragOver}
                         onDrop={handleDrop}
                         onClick={() => fileInputRef.current?.click()}
-                        className="border-2 border-dashed border-white/10 rounded-2xl p-12 text-center hover:border-white/20 hover:bg-white/5 transition-all cursor-pointer group"
+                        className="border-2 border-dashed border-border rounded-2xl p-12 text-center hover:border-primary-300 dark:hover:border-primary-700 hover:bg-muted/50 transition-all cursor-pointer group"
                       >
-                        <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                          <Upload className="w-8 h-8 text-zinc-500 group-hover:text-white transition-colors" />
+                        <div className="w-16 h-16 bg-muted rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                          <Upload className="w-8 h-8 text-muted-foreground group-hover:text-primary-500 transition-colors" />
                         </div>
-                        <p className="text-white font-medium mb-1">
-                          Drag and drop images here, or <span className="text-primary-400 cursor-pointer">browse files</span>
+                        <p className="text-card-foreground font-medium mb-1">
+                          Drag and drop images here, or <span className="text-primary-500 cursor-pointer">browse files</span>
                         </p>
-                        <p className="text-sm text-zinc-500">
+                        <p className="text-sm text-muted-foreground">
                           {selectedPackage === 'unlimited'
                             ? 'Maximum 30 images - Per Property'
                             : `Maximum ${packages[selectedPackage as keyof typeof packages]?.images || 6} images (${packages[selectedPackage as keyof typeof packages]?.name || 'Starter'} package), 10MB each`
@@ -773,9 +778,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                       <button
                         onClick={handleSubmit}
                         disabled={loading || !projectName.trim()}
-                        className="bg-white text-black px-8 py-4 rounded-xl font-bold hover:bg-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-white/5 hover:shadow-white/10 hover:-translate-y-0.5 flex items-center"
+                        className="bg-primary-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center"
                       >
-                        {loading && <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2" />}
+                        {loading && <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />}
                         {loading ? 'Creating Project...' : 'Create Project'}
                       </button>
                     </div>

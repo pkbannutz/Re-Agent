@@ -631,7 +631,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
   if (loading || !project) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
       </div>
     )
   }
@@ -642,8 +642,8 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
       {statusMessage && (
         <div className={`p-4 rounded-xl border ${
           statusMessage.type === 'success'
-            ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-            : 'bg-red-500/10 border-red-500/20 text-red-400'
+            ? 'bg-emerald-100 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300'
+            : 'bg-red-100 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-700 dark:text-red-300'
         }`}>
           {statusMessage.message}
         </div>
@@ -651,15 +651,15 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
       {/* Navigation Tabs */}
       <div className="flex items-center justify-center">
-        <div className="flex items-center space-x-1 bg-[#111] p-1 rounded-xl border border-white/5">
+        <div className="flex items-center space-x-1 bg-card p-1 rounded-xl border border-border">
           <button
             onClick={onBackToDashboard}
-            className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white rounded-lg transition-colors"
+            className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg transition-colors"
           >
             Dashboard
           </button>
-          <div className="w-px h-4 bg-white/10" />
-          <div className="px-4 py-2 text-sm font-medium text-white bg-white/10 rounded-lg border border-white/20">
+          <div className="w-px h-4 bg-border" />
+          <div className="px-4 py-2 text-sm font-medium text-card-foreground bg-muted rounded-lg border border-border">
             {project.name}
           </div>
         </div>
@@ -667,21 +667,21 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
       {/* Project Info Card */}
       <div className="max-w-4xl mx-auto">
-        <div className="bg-[#0f0f0f] rounded-3xl border border-white/10 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] hover:border-emerald-500/30 transition-all duration-300 overflow-hidden">
+        <div className="bg-card rounded-3xl border border-border shadow-lg hover:border-primary-200 dark:hover:border-primary-800 transition-all duration-300 overflow-hidden">
           {/* Header */}
-          <div className="p-8 pb-6 border-b border-white/5">
+          <div className="p-8 pb-6 border-b border-border">
             <div className="text-center">
               <EditableText
                 as="h1"
                 initialValue={project.name}
                 onSave={(val) => handleUpdateProject('name', val)}
-                className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight text-center cursor-pointer hover:text-emerald-400 transition-colors"
+                className="text-4xl md:text-5xl font-bold text-card-foreground tracking-tight leading-tight text-center cursor-pointer hover:text-primary-600 transition-colors"
                 placeholder="Project Name"
               />
             </div>
 
             <div className="flex justify-center mt-4">
-              <span className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-bold rounded-xl">
+              <span className="inline-flex items-center px-6 py-2 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300 text-sm font-bold rounded-xl">
                 {getPackageDisplayName(project.package)} Pack • {getPackageImageLimit(project.package)} Images
               </span>
             </div>
@@ -690,15 +690,15 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
           {/* Property Details */}
           <div className="p-8 space-y-6">
             {/* Address Row */}
-            <div className="flex items-center justify-between p-4 bg-black/20 rounded-xl border border-white/5">
+            <div className="flex items-center justify-between p-4 bg-muted/50 rounded-xl border border-border">
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-zinc-400" />
+                <MapPin className="w-5 h-5 text-muted-foreground" />
                 <div>
-                  <div className="text-sm text-zinc-500 font-medium">Property Address</div>
+                  <div className="text-sm text-muted-foreground font-medium">Property Address</div>
                   <EditableText
                     initialValue={project.address || ''}
                     onSave={(val) => handleUpdateProject('address', val)}
-                    className="text-white font-medium mt-1"
+                    className="text-card-foreground font-medium mt-1"
                     placeholder="Add property address"
                   />
                 </div>
@@ -708,17 +708,17 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
             {/* Owner & Phone Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Owner Name */}
-              <div className="flex items-center justify-between p-4 bg-black/20 rounded-xl border border-white/5">
+              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-xl border border-border">
                 <div className="flex items-center space-x-3">
-                  <div className="w-5 h-5 bg-zinc-600 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center">
                     <span className="text-xs text-white font-bold">P</span>
                   </div>
                   <div>
-                    <div className="text-sm text-zinc-500 font-medium">Property Owner</div>
+                    <div className="text-sm text-muted-foreground font-medium">Property Owner</div>
                     <EditableText
                       initialValue={project.owner_name || ''}
                       onSave={(val) => handleUpdateProject('owner_name', val)}
-                      className="text-white font-medium mt-1"
+                      className="text-card-foreground font-medium mt-1"
                       placeholder="Owner name"
                     />
                   </div>
@@ -726,17 +726,17 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
               </div>
 
               {/* Phone Number */}
-              <div className="flex items-center justify-between p-4 bg-black/20 rounded-xl border border-white/5">
+              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-xl border border-border">
                 <div className="flex items-center space-x-3">
-                  <div className="w-5 h-5 bg-zinc-600 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center">
                     <span className="text-xs text-white font-bold">#</span>
                   </div>
                   <div>
-                    <div className="text-sm text-zinc-500 font-medium">Phone Number</div>
+                    <div className="text-sm text-muted-foreground font-medium">Phone Number</div>
                     <EditableText
                       initialValue={project.phone || ''}
                       onSave={(val) => handleUpdateProject('phone', val)}
-                      className="text-white font-medium mt-1"
+                      className="text-card-foreground font-medium mt-1"
                       placeholder="Phone number"
                     />
                   </div>
@@ -752,7 +752,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
         {project.status === 'completed' && (
           <button
             onClick={handleBulkDownload}
-            className="inline-flex items-center px-6 py-3 bg-[#111] border border-white/10 text-white font-medium rounded-xl hover:bg-white/5 transition-colors shadow-sm"
+            className="inline-flex items-center px-6 py-3 bg-card border border-border text-card-foreground font-medium rounded-xl hover:bg-muted transition-colors shadow-sm"
           >
             <Download className="w-5 h-5 mr-2" />
             Download Images
@@ -762,7 +762,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
         {project.package !== 'starter' && (
           <button
             onClick={() => setShowVideoConfirm(true)}
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-teal-600 text-white font-bold rounded-xl hover:from-primary-500 hover:to-teal-500 transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5"
+            className="inline-flex items-center px-6 py-3 bg-primary-500 text-white font-bold rounded-xl hover:bg-primary-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             <Video className="w-5 h-5 mr-2" />
             Generate Video
@@ -772,13 +772,13 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
 
       {/* Project Description */}
-      <div className="bg-[#111] p-6 rounded-2xl border border-white/5 space-y-4">
-        <label className="block text-sm font-medium text-zinc-400 mb-2">Project Description</label>
+      <div className="bg-card p-6 rounded-2xl border border-border space-y-4">
+        <label className="block text-sm font-medium text-muted-foreground mb-2">Project Description</label>
         <EditableText
           multiline
           initialValue={project.ai_description || ''}
           onSave={(val) => handleUpdateProject('ai_description', val)}
-          className="text-zinc-300 leading-relaxed min-h-[120px]"
+          className="text-card-foreground leading-relaxed min-h-[120px]"
           placeholder="Add project description..."
         />
       </div>
@@ -786,15 +786,15 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
       {/* Images Section */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-white">
-            Property Images <span className="text-zinc-500 font-normal ml-2">{project.project_images.length}/{getPackageImageLimit(project.package)}</span>
+          <h2 className="text-xl font-semibold text-card-foreground">
+            Property Images <span className="text-muted-foreground font-normal ml-2">{project.project_images.length}/{getPackageImageLimit(project.package)}</span>
           </h2>
         </div>
 
         {/* Existing Images Grid - Above Upload Area */}
         {project.project_images.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Current Images ({project.project_images.length})</h3>
+            <h3 className="text-lg font-semibold text-card-foreground">Current Images ({project.project_images.length})</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <AnimatePresence>
                 {project.project_images.map((image, index) => (
@@ -803,9 +803,9 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="bg-[#111] rounded-2xl border border-white/5 shadow-sm overflow-hidden"
+                    className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden"
                   >
-                    <div className="relative bg-black rounded-t-2xl overflow-hidden cursor-pointer" onClick={() => openModal(image.id)}>
+                    <div className="relative bg-muted rounded-t-2xl overflow-hidden cursor-pointer" onClick={() => openModal(image.id)}>
                       {imageUrls[image.id] ? (
                         <img
                           src={imageUrls[image.id]}
@@ -813,7 +813,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                           className="w-full h-auto max-h-64 object-contain hover:opacity-90 transition-opacity"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-zinc-600 min-h-[200px]">
+                        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground min-h-[200px]">
                           <div className="w-8 h-8 border-2 border-current border-t-transparent rounded-full animate-spin" />
                         </div>
                       )}
@@ -822,18 +822,18 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                         <DeleteButton
                           onDelete={() => handleDeleteImage(image.id, image.original_filename)}
                         />
-                        <span className="bg-black/70 backdrop-blur-md text-white text-xs font-medium px-2 py-1 rounded-full border border-white/10">
+                        <span className="bg-background/80 backdrop-blur-md text-card-foreground text-xs font-medium px-2 py-1 rounded-full border border-border">
                           {image.attempt_number === 1 ? 'Original' : `Attempt ${image.attempt_number}`}
                         </span>
                       </div>
                     </div>
 
                     {/* Individual Image Instructions */}
-                    <div className="p-4 border-t border-white/5">
+                    <div className="p-4 border-t border-border">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-medium text-white">Image {index + 1}</h3>
+                        <h3 className="font-medium text-card-foreground">Image {index + 1}</h3>
                         {image.aspect_ratio && (
-                          <span className="text-xs bg-white/5 text-zinc-400 px-2 py-1 rounded-md border border-white/5">
+                          <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-md border border-border">
                             {image.aspect_ratio}
                           </span>
                         )}
@@ -845,7 +845,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                             value={tweakInstruction}
                             onChange={(e) => setTweakInstruction(e.target.value)}
                             placeholder="Describe changes for this image..."
-                            className="w-full text-sm p-3 bg-black rounded-xl border border-white/10 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 resize-none text-white placeholder:text-zinc-600 outline-none transition-all"
+                            className="w-full text-sm p-3 bg-background rounded-xl border border-border focus:border-primary-500 focus:ring-1 focus:ring-primary-500 resize-none text-card-foreground placeholder:text-muted-foreground outline-none transition-all"
                             rows={2}
                             autoFocus
                           />
@@ -853,13 +853,13 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                             <button
                               onClick={() => handleGenerateTweak(image.id)}
                               disabled={generatingTweak || !tweakInstruction.trim()}
-                              className="flex-1 bg-white text-black text-sm font-bold py-2 rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors"
+                              className="flex-1 bg-primary-500 text-white text-sm font-bold py-2 rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors"
                             >
                               {generatingTweak ? 'Generating...' : 'Generate Tweak'}
                             </button>
                             <button
                               onClick={() => setTweakingImage(null)}
-                              className="px-4 py-2 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                              className="px-4 py-2 text-sm text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors"
                             >
                               Cancel
                             </button>
@@ -869,7 +869,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                         <button
                           onClick={() => setTweakingImage(image.id)}
                           disabled={image.attempt_number >= 5}
-                          className="w-full flex items-center justify-center py-2 text-sm font-medium text-zinc-400 bg-white/5 hover:bg-white/10 hover:text-white rounded-xl transition-colors disabled:opacity-50 border border-transparent hover:border-white/5"
+                          className="w-full flex items-center justify-center py-2 text-sm font-medium text-muted-foreground bg-muted/50 hover:bg-muted hover:text-card-foreground rounded-xl transition-colors disabled:opacity-50 border border-transparent hover:border-border"
                         >
                           <Wand2 className="w-4 h-4 mr-2" />
                           {image.attempt_number >= 5 ? 'Max Attempts Reached' : 'Add Specific Instructions For This Image'}
@@ -877,11 +877,11 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                       )}
 
                       {image.tweak_history?.length > 0 && (
-                        <div className="mt-3 pt-3 border-t border-white/5">
-                          <p className="text-xs text-zinc-500 mb-1">Previous tweaks:</p>
+                        <div className="mt-3 pt-3 border-t border-border">
+                          <p className="text-xs text-muted-foreground mb-1">Previous tweaks:</p>
                           <div className="space-y-1">
                             {image.tweak_history.slice(-2).map((tweak, i) => (
-                              <p key={i} className="text-xs text-zinc-400 italic">"{tweak}"</p>
+                              <p key={i} className="text-xs text-muted-foreground italic">"{tweak}"</p>
                             ))}
                           </div>
                         </div>
@@ -897,7 +897,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
               <div className="flex justify-center pt-4">
                 <button
                   onClick={handleGenerateAllImages}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 rounded-xl font-bold hover:from-emerald-500 hover:to-teal-500 transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                  className="bg-primary-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-primary-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
                   <Wand2 className="w-5 h-5 mr-2" />
                   Generate All Images
@@ -906,13 +906,13 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
             )}
 
             {/* Global Instructions - After Images, Before Upload */}
-            <div className="bg-[#111] p-6 rounded-2xl border border-white/5 space-y-4">
-              <label className="block text-sm font-medium text-zinc-400 mb-2">Global Instructions for All Images</label>
+            <div className="bg-card p-6 rounded-2xl border border-border space-y-4">
+              <label className="block text-sm font-medium text-muted-foreground mb-2">Global Instructions for All Images</label>
               <EditableText
                 multiline
                 initialValue={project.global_instructions || ''}
                 onSave={(val) => handleUpdateProject('global_instructions', val)}
-                className="text-zinc-300 leading-relaxed min-h-[100px]"
+                className="text-card-foreground leading-relaxed min-h-[100px]"
                 placeholder="Describe the style for all images: e.g., Make it sunny, Scandinavian furniture, luxury kitchen"
               />
             </div>
@@ -921,14 +921,14 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
         {/* Drag & Drop Upload Area */}
         {project.project_images.length >= getPackageImageLimit(project.package) ? (
-          <div className="border-2 border-dashed border-zinc-600/50 rounded-2xl p-16 text-center bg-zinc-900/30 min-h-[300px] flex flex-col items-center justify-center">
-            <div className="w-20 h-20 bg-zinc-700/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Upload className="w-10 h-10 text-zinc-600" />
+          <div className="border-2 border-dashed border-muted-foreground/50 rounded-2xl p-16 text-center bg-muted/30 min-h-[300px] flex flex-col items-center justify-center">
+            <div className="w-20 h-20 bg-muted/50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Upload className="w-10 h-10 text-muted-foreground" />
             </div>
-            <p className="text-zinc-500 font-medium mb-2 text-lg">
+            <p className="text-muted-foreground font-medium mb-2 text-lg">
               Upload limit reached
             </p>
-            <p className="text-sm text-zinc-600 mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               Maximum {getPackageImageLimit(project.package)} images for {getPackageDisplayName(project.package)} package
             </p>
           </div>
@@ -943,15 +943,15 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
               }
             }}
             onClick={() => document.getElementById('project-file-input')?.click()}
-            className="border-2 border-dashed border-white/10 rounded-2xl p-16 text-center hover:border-white/20 hover:bg-white/5 transition-all cursor-pointer group min-h-[300px] flex flex-col items-center justify-center"
+            className="border-2 border-dashed border-border rounded-2xl p-16 text-center hover:border-primary-300 dark:hover:border-primary-700 hover:bg-muted/50 transition-all cursor-pointer group min-h-[300px] flex flex-col items-center justify-center"
           >
-            <div className="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-              <Upload className="w-10 h-10 text-zinc-500 group-hover:text-white transition-colors" />
+            <div className="w-20 h-20 bg-muted rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+              <Upload className="w-10 h-10 text-muted-foreground group-hover:text-primary-500 transition-colors" />
             </div>
-            <p className="text-white font-medium mb-2 text-lg">
-              Drag and drop images here, or <span className="text-primary-400 cursor-pointer">browse files</span>
+            <p className="text-card-foreground font-medium mb-2 text-lg">
+              Drag and drop images here, or <span className="text-primary-500 cursor-pointer">browse files</span>
             </p>
-            <p className="text-sm text-zinc-500 mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               Maximum {getPackageImageLimit(project.package)} images, 10MB each • No minimum required
             </p>
             <input
@@ -967,8 +967,8 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
         {/* Upload Progress */}
         {Object.keys(uploadingFiles).length > 0 && (
-          <div className="bg-[#111] p-6 rounded-2xl border border-white/5 space-y-4">
-            <h3 className="text-lg font-semibold text-white">Uploading Images</h3>
+          <div className="bg-card p-6 rounded-2xl border border-border space-y-4">
+            <h3 className="text-lg font-semibold text-card-foreground">Uploading Images</h3>
             <div className="space-y-4">
               {Object.entries(uploadingFiles).map(([fileId, uploadState]) => {
                 const fileName = fileId.split('-')[0] // Extract filename from ID
@@ -981,15 +981,15 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                     }`}
                   >
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-white truncate max-w-[200px]">{fileName}</span>
+                      <span className="text-card-foreground truncate max-w-[200px]">{fileName}</span>
                       <div className="flex items-center space-x-2">
                         {uploadState.status === 'uploading' && uploadState.speed > 0 && (
-                          <span className="text-zinc-400 text-xs">{uploadState.speed} MB/s</span>
+                          <span className="text-muted-foreground text-xs">{uploadState.speed} MB/s</span>
                         )}
                         <span className={`text-xs px-2 py-1 rounded-full ${
-                          uploadState.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' :
-                          uploadState.status === 'error' ? 'bg-red-500/20 text-red-400' :
-                          'bg-primary-500/20 text-primary-400'
+                          uploadState.status === 'completed' ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300' :
+                          uploadState.status === 'error' ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300' :
+                          'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300'
                         }`}>
                           {uploadState.status === 'completed' ? 'Complete' :
                            uploadState.status === 'error' ? 'Failed' :
@@ -998,7 +998,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                       </div>
                     </div>
 
-                    <div className="w-full bg-black rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                       <div
                         className={`h-full transition-all duration-300 ease-out ${
                           uploadState.status === 'completed' ? 'bg-emerald-500' :
@@ -1030,26 +1030,26 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
       {/* Video Generation Modal */}
       {showVideoConfirm && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#111] border border-white/10 rounded-3xl shadow-2xl max-w-md w-full p-8">
+        <div className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-background border border-border rounded-3xl shadow-2xl max-w-md w-full p-8">
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-primary-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary-400">
+              <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-2xl flex items-center justify-center mx-auto mb-4 text-primary-600">
                 <Video className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Generate Video</h3>
-              <p className="text-zinc-400">Create a cinematic 60-second tour using your processed images.</p>
+              <h3 className="text-2xl font-bold text-card-foreground mb-2">Generate Video</h3>
+              <p className="text-muted-foreground">Create a cinematic 60-second tour using your processed images.</p>
             </div>
 
             <div className="space-y-3 mb-8">
-              <div className="flex items-center p-3 bg-white/5 rounded-xl text-sm text-zinc-300 border border-white/5">
+              <div className="flex items-center p-3 bg-muted/50 rounded-xl text-sm text-card-foreground border border-border">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3" />
                 Slow-motion dolly effects
               </div>
-              <div className="flex items-center p-3 bg-white/5 rounded-xl text-sm text-zinc-300 border border-white/5">
+              <div className="flex items-center p-3 bg-muted/50 rounded-xl text-sm text-card-foreground border border-border">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3" />
                 Professional background music
               </div>
-              <div className="flex items-center p-3 bg-white/5 rounded-xl text-sm text-zinc-300 border border-white/5">
+              <div className="flex items-center p-3 bg-muted/50 rounded-xl text-sm text-card-foreground border border-border">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3" />
                 High-resolution 1080p output
               </div>
@@ -1058,14 +1058,14 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
             <div className="flex gap-3">
               <button
                 onClick={() => setShowVideoConfirm(false)}
-                className="flex-1 py-3 text-zinc-400 font-medium hover:text-white hover:bg-white/5 rounded-xl transition-colors"
+                className="flex-1 py-3 text-muted-foreground font-medium hover:text-card-foreground hover:bg-muted rounded-xl transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleGenerateVideo}
                 disabled={generatingVideo}
-                className="flex-1 py-3 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-colors disabled:opacity-50"
+                className="flex-1 py-3 bg-primary-500 text-white font-bold rounded-xl hover:bg-primary-600 transition-colors disabled:opacity-50"
               >
                 {generatingVideo ? 'Starting...' : 'Start Generation'}
               </button>
@@ -1081,7 +1081,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 dark:bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={closeModal}
           >
             <motion.div
@@ -1094,13 +1094,13 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
               {/* Close Button */}
               <button
                 onClick={closeModal}
-                className="absolute -top-12 right-0 w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+                className="absolute -top-12 right-0 w-8 h-8 bg-muted hover:bg-muted/80 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors z-10"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Image */}
-              <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
+              <div className="bg-muted rounded-2xl overflow-hidden shadow-2xl">
                 {imageUrls[fullSizeImage] && (
                   <img
                     src={imageUrls[fullSizeImage]}
@@ -1111,10 +1111,10 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
               </div>
 
               {/* Tweak Controls */}
-              <div className="mt-6 bg-[#111] rounded-2xl border border-white/10 p-6">
+              <div className="mt-6 bg-card rounded-2xl border border-border p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-white">Add Specific Instructions For This Image</h3>
-                  <span className="text-sm text-zinc-400">
+                  <h3 className="text-lg font-semibold text-card-foreground">Add Specific Instructions For This Image</h3>
+                  <span className="text-sm text-muted-foreground">
                     {project && fullSizeImage ? project.project_images.find(img => img.id === fullSizeImage)?.attempt_number || 1 : 1}/5 attempts
                   </span>
                 </div>
@@ -1125,23 +1125,23 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                       value={modalTweakInstruction}
                       onChange={(e) => setModalTweakInstruction(e.target.value)}
                       placeholder="Describe specific changes you want for this image..."
-                      className="w-full text-sm p-4 bg-black rounded-xl border border-white/10 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 resize-none text-white placeholder:text-zinc-600 outline-none transition-all min-h-[120px]"
+                      className="w-full text-sm p-4 bg-background rounded-xl border border-border focus:border-primary-500 focus:ring-1 focus:ring-primary-500 resize-none text-card-foreground placeholder:text-muted-foreground outline-none transition-all min-h-[120px]"
                       autoFocus
                     />
                     <div className="flex gap-3 justify-end">
                       <button
                         onClick={() => setModalTweakingImage(null)}
-                        className="px-6 py-2 text-sm text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                        className="px-6 py-2 text-sm text-muted-foreground hover:text-card-foreground hover:bg-muted rounded-lg transition-colors"
                       >
                         Cancel
                       </button>
                       <button
                         onClick={handleModalTweak}
                         disabled={generatingModalTweak || !modalTweakInstruction.trim()}
-                        className="px-6 py-2 bg-white text-black text-sm font-bold rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors flex items-center"
+                        className="px-6 py-2 bg-primary-500 text-white text-sm font-bold rounded-lg hover:bg-primary-600 disabled:opacity-50 transition-colors flex items-center"
                       >
                         {generatingModalTweak && (
-                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2" />
+                          <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
                         )}
                         {generatingModalTweak ? 'Generating...' : 'Generate Tweak'}
                       </button>
@@ -1151,7 +1151,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
                   <button
                     onClick={() => setModalTweakingImage(fullSizeImage)}
                     disabled={project && fullSizeImage ? (project.project_images.find(img => img.id === fullSizeImage)?.attempt_number || 0) >= 5 : false}
-                    className="w-full flex items-center justify-center py-3 text-sm font-medium text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 hover:text-emerald-300 rounded-xl transition-colors disabled:opacity-50 border border-emerald-500/30"
+                    className="w-full flex items-center justify-center py-3 text-sm font-medium text-primary-600 bg-primary-100 dark:bg-primary-900/20 hover:bg-primary-200 dark:hover:bg-primary-800 rounded-xl transition-colors disabled:opacity-50 border border-primary-200 dark:border-primary-800"
                   >
                     <Wand2 className="w-5 h-5 mr-3" />
                     {project && fullSizeImage && (project.project_images.find(img => img.id === fullSizeImage)?.attempt_number || 0) >= 5
@@ -1168,29 +1168,29 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
 
       {/* Delete Project Confirmation Modal */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#111] border border-white/10 rounded-3xl shadow-2xl max-w-md w-full p-8">
+        <div className="fixed inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-background border border-border rounded-3xl shadow-2xl max-w-md w-full p-8">
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-red-400">
+              <div className="w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-red-600 dark:text-red-400">
                 <Trash2 className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Delete Project</h3>
-              <p className="text-zinc-400">
+              <h3 className="text-2xl font-bold text-card-foreground mb-2">Delete Project</h3>
+              <p className="text-muted-foreground">
                 Are you sure you want to permanently delete <strong>"{project?.name}"</strong>?
                 This action cannot be undone.
               </p>
             </div>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-center p-3 bg-red-500/10 rounded-xl text-sm text-red-300 border border-red-500/20">
+              <div className="flex items-center p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300">
                 <span className="w-2 h-2 bg-red-500 rounded-full mr-3" />
                 All project images will be permanently deleted
               </div>
-              <div className="flex items-center p-3 bg-red-500/10 rounded-xl text-sm text-red-300 border border-red-500/20">
+              <div className="flex items-center p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300">
                 <span className="w-2 h-2 bg-red-500 rounded-full mr-3" />
                 All processing history will be lost
               </div>
-              <div className="flex items-center p-3 bg-red-500/10 rounded-xl text-sm text-red-300 border border-red-500/20">
+              <div className="flex items-center p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-700 dark:text-red-300">
                 <span className="w-2 h-2 bg-red-500 rounded-full mr-3" />
                 This action cannot be reversed
               </div>
@@ -1199,7 +1199,7 @@ export function ProjectView({ projectId, onBackToDashboard, onNewProject }: Proj
             <div className="flex gap-3">
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="flex-1 py-3 text-zinc-400 font-medium hover:text-white hover:bg-white/5 rounded-xl transition-colors"
+                className="flex-1 py-3 text-muted-foreground font-medium hover:text-card-foreground hover:bg-muted rounded-xl transition-colors"
               >
                 Cancel
               </button>
